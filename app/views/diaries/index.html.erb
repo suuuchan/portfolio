@@ -1,0 +1,52 @@
+<div class = "container">
+  <h2>つちっこ成長日記</h2>
+  <div class = "col-md-8 col-sm-12">
+    <div class = "row">
+    <%= form_with model:@diary, url:diaries_path, local:true do |f| %>
+    <table>
+      <tr>
+        <th>写真</th>
+        <td><%= f.attachment_field :image %></td>
+      </tr>
+      <tr>
+        <th>タイトル</th>
+        <td><%= f.text_field :title %></td>
+      </tr>
+      <tr>
+        <th>記録</th>
+        <td><%= f.text_area :text %></td>
+      </tr>
+    </table>
+    <div class = "form">
+    <%= f.submit "登録する", class: "btn btn-outline-warning" %>
+    </div>
+    </div>
+  </div>
+  <% end %>
+  <div class = "col-md-10 col-sm-12">
+    <%= month_calendar events: @user.diaries do |date, diaries| %>
+     <%= date.day %>
+     <% diaries.each do |diary| %>
+      <div>
+        <%= link_to diary.title, edit_diary_path(diary) %>
+      </div>
+      <% end %>
+    <% end %>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>タイトル</th>
+          <th>記録</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @diaries.each do |diary| %>
+          <tr>
+            <td><%= diary.title %></td>
+            <td><%= diary.text %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+</div>

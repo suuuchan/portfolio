@@ -1,0 +1,40 @@
+<div class="container px-sm-0">
+  <div class="row">
+    <div class = "col-md-12 offset-md-1">
+      <div class = "row">
+        <div class = "col-md-1 m-4">
+          <%= image_tag 'nasubi.png',:width => '90' %>
+        </div>
+        <div class = "col-md-3 m-5">
+          <h2>投稿一覧</h2>
+        </div>
+        <div class = "col-md-1 m-4">
+          <%= image_tag 'nasubi.png',:width => '90' %>
+        </div>
+        <div class="row">
+          <% @posts.each do |post| %>
+          <ul class = "post">
+            <li>
+              <%= link_to post_path(post.id) do %>
+              <%= attachment_image_tag post, :image, size:'300x200', format:"jpeg", class:"rounded-pill" %>
+              <% end %>
+            </li>
+            <li>
+              <strong><%= post.title %></strong>
+            </li>
+            <li>
+              <%= link_to user_path(post.user_id) do %>
+               <%= post.user.nickname %>
+              <% end %>
+            </li>
+          </ul>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

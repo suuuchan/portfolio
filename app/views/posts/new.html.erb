@@ -1,0 +1,26 @@
+<div class = "row">
+  <div class = "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <%= form_with model:@post, url:posts_path, local:true do |f| %>
+    <h2>新規投稿</h2>
+    <div class = "form">
+      <table class = "table table-borderless">
+        <tr>
+          <th>投稿写真</th>
+          <td><%= f.attachment_field :image, placeholder:"添付写真" %></td>
+        </tr>
+        <tr>
+          <th>タイトル</th>
+          <td><%= f.text_field :title, placeholder:"タイトル" %></td>
+        </tr>
+        <tr>
+          <th>投稿内容</th>
+          <td><%= f.text_area :text, placeholder:"投稿内容" %></td>
+        </tr>
+      </table>
+    </div>
+    <div class = "form">
+      <%= f.submit "投稿", class: "btn btn-outline-warning" %>
+    </div>
+    <% end %>
+  </div>
+</div>

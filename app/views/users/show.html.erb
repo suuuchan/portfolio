@@ -1,0 +1,70 @@
+<div class="container px-sm-0 mt-3">
+  <div class="row">
+    <div class="col-md-2">
+        <%= attachment_image_tag @user, :image, size:'100x100', format:"jpeg", class: "rounded-pill" %>
+        </div>
+      <div class="col-md-10 d-flex align-items-center">
+        <h2><%= @user.nickname %></h2>
+        <div class="col-md-5">
+          <% if current_user == @user %>
+          <%= link_to "編集する", edit_user_path(current_user.id), class: "btn btn-outline-secondary"  %>
+          <% else %>
+          <%= render "relationships/follow_button" %>
+          <% end %>
+        </div>
+        <div class="col-md-3">
+          <p>フォロー：<%= @user.relationships.where(follower_id: @user.id).count %>人</p>
+          <p>フォロワー：<%= @user.relationships.where(followed_id: @user.id).count %>人</p>
+        </div>
+
+
+
+    　</div>
+
+  　 </div>
+  <div class = "row">
+    <div class = "col-md-6 ml-4 mt-3">
+      <table class="table table-borderless">
+          <tr>
+            <th>自己紹介</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th>育てている作物</th>
+            <td><</td>
+          </tr>
+      </table>
+    </div>
+    <div class="col-md-4 ml-3 mt-2">
+      <% if current_user == @user %>
+      <%= link_to "すべての投稿を削除する",destroy_all_posts_path, method: :delete, class: "btn btn-outline-warning" %>
+      <% end %>
+    </div>
+  </div>
+
+    <!--<div class = "col-md-4">-->
+
+    <!--</div>-->
+ <div class="container md-7 px-4 px-sm-0 mt-3">
+  <div class = "row">
+     <% @posts.each do |post| %>
+          <ul class = "post">
+            <li>
+              <%= link_to post_path(post.id) do %>
+              <%= attachment_image_tag post, :image, size:'300x200', format:"jpeg", class:"rounded-pill" %>
+              <% end %>
+            </li>
+            <li>
+              <strong>
+                <%= link_to post_path(post.id) do %>
+                 <%= post.title %>
+                <% end %>
+              </strong>
+            </li>
+          </ul>
+        <% end %>
+  </div>
+
+
+
+  </div>

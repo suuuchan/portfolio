@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tuchikko</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/swiper@4.5.1/dist/css/swiper.min.css"/>
+    <script src="//cdn.jsdelivr.net/npm/swiper@4.5.1/dist/js/swiper.min.js"></script>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body>
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-white">
+        <div class="container">
+          <div class = "navbar-brand p-3">
+            <%= link_to "/" do %>
+             <%= image_tag 'img_logo.png',size: "120x120" %>
+            <% end %>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+              <li>
+                <%= link_to "マイページ", user_path(current_user.id), class: "fas fa-home nav-link text-secondary" %>
+              </li>
+              <li>
+                <%= link_to "成長日記", diaries_path, class: "fas fa-home nav-link text-secondary" %>
+              </li>
+              <li>
+                <%= link_to "投稿する", new_post_path, class: "fas fa-home nav-link text-secondary" %>
+              </li>
+              <li>
+                <%= link_to "メンバーの投稿", posts_path, class: "fas fa-users nav-link text-secondary" %>
+              </li>
+              <li>
+                <%= link_to "ログアウト",destroy_user_session_path, method: :delete, class:"fas fa-sign-out-alt nav-link text-secondary" %>
+              </li>
+              <% else %>
+              <li>
+                <%= link_to "つちっこについて",about_path, class: "fas fa-carrot nav-link text-secondary" %>
+              </li>
+              <li>
+                <%= link_to "メンバー登録",new_user_registration_path, class: "fas fa-lemon nav-link text-secondary" %>
+              </li>
+              <li>
+                <%= link_to "ログイン",new_user_session_path, class: "fas fa-apple-alt nav-link text-secondary" %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+ </header>
+	<%= yield %>
+  </body>
+</html>

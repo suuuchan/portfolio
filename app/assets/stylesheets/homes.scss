@@ -1,0 +1,28 @@
+// Place all the styles related to the homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.title {
+  font-family: 'NotoSansJP-Light';
+}
+
+.swiper-container {
+  position: relative; 
+}
+
+.swiper-container:before {
+  content: "";
+  display: block;
+  padding-top: calc(9/16*100%);
+}
+
+.swiper-wrapper {
+  position: absolute; 
+  top: 0;
+  left: 0;
+}
+
+.swiper-wrapper img {
+    width: 100%;
+    height: auto;
+}

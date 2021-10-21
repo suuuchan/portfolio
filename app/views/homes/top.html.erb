@@ -1,0 +1,45 @@
+<div class="row">
+    <% @weathers.each do |weather| %>
+        <div class="col-md-4">
+            <%= "#{weather.city} // #{weather.weather_forecast.weather_main}" %>
+            <%= image_tag "http://openweathermap.org/img/wn/#{weather.weather_forecast.icon}@2x.png" %>
+        </div>
+    <% end %>
+</div>
+
+<div class = "swiper-container">
+    <div class = "swiper-wrapper">
+        <div class = "swiper-slide"><div class = "box"><%= image_tag 'tanbo.jpg' %></div></div>
+        <div class = "swiper-slide"><div class = "box"><%= image_tag 'imo.jpg' %></div></div>
+        <div class = "swiper-slide"><div class = "box"><%= image_tag 'tomato.jpg' %></div></div>
+    </div>
+    <div class = "swiper-pagination"></div>
+    <div class = "swiper-button-prev"></div>
+    <div class = "swiper-button-next"></div>
+    <div class = "swiper-scrollbar"></div>
+</div>
+
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        autoplay: {
+        delay: 3000,
+        disableOnInteraction: true
+         },
+        pagination: {
+            el: '.swiper-pagination',
+
+
+        },
+
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+
+        },
+
+        scrollbar: {
+            el: '.swiper-scrollbar',
+
+        },
+    })
+</script>
