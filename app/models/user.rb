@@ -11,6 +11,9 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followings, through: :relationships, source: :followed
+  
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_posts, through: :favorites, source: :post
 
   validates :username, uniqueness: true
   attachment :image
@@ -25,5 +28,17 @@ class User < ApplicationRecord
 
   def following?(user)
     followings.include?(user)
+  end
+
+  def favorite(post)
+    favorites.find_or_create_by(post: post)
+  end
+
+  def favorite?(post)
+    favorite_posts.include?(post)
+  end
+
+  def unfavorite(post)
+    favorite_posts.delete(post)
   end
 end

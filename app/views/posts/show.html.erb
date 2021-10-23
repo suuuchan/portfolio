@@ -5,11 +5,28 @@
    <p>自分の投稿</p>
   <% end %>
 </h2>
+
+<div>
+  <%= @post.user_id %>,<%= current_user.id %>
+</div>
+  <% if @post.user_id == current_user.id %>
+   <%= link_to "投稿を削除", post_path(@post.id), method: :delete %>
+   <%= link_to "編集する", edit_post_path(@post.id) %>
+  <% else %>
+  <div id="favorite-button-<%= @post.id %>">
+    <% if current_user&.favorite?(@post) %>
+     <%= render "favorites/unfavorite_button", post: @post %>
+    <% else %>
+     <%= render "favorites/favorite_button", post: @post %>
+    <% end %>
+  </div>
+  <% end %>
+
 <div class="container px-10 px-sm-0">
   <div class="row">
     <div class = "col-md-4 m-3">
       <%= @post.created_at.to_s(:datetime_jp) %>
-      <%= attachment_image_tag @post, :image, :fill, 300, 200, format:"jpeg" %>
+      <%= attachment_image_tag @post, :image, :fill, 400, 300, format:"jpeg" %>
     </div>
     <div class = "col-md-7">
       <%= @post.title %>
@@ -30,9 +47,8 @@
       <% end %>
     </div>
   </div>
- </div> 
- 
- 
-    
-    
-    
+ </div>
+
+
+
+

@@ -7,6 +7,11 @@ class DiariesController < ApplicationController
     @diaries = Diary.where(user_id: current_user).order(start_time: "desc")
   end
 
+  def show
+    @diary = Diary.find(params[:id])
+
+  end
+
   def create
     @user = current_user
     @diary = Diary.new(diaries_params)
@@ -21,6 +26,14 @@ class DiariesController < ApplicationController
     # else
     #   render :index
     # end
+  end
+
+  def destroy
+    @diary = Diary.find(params[:id])
+    if @diary.user_id == current_user.id
+       @diary.delete
+      redirect_to diaries_path
+    end
   end
 
   def ensure_correct_user

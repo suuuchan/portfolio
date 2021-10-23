@@ -28,7 +28,7 @@
      <%= date.day %>
      <% diaries.each do |diary| %>
       <div>
-        <%= link_to diary.title, edit_diary_path(diary) %>
+        <%= link_to diary.title, diary_path(diary.id) %>
       </div>
       <% end %>
     <% end %>

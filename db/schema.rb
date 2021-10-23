@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_17_115855) do
+ActiveRecord::Schema.define(version: 2021_10_23_004210) do
 
   create_table "cities", force: :cascade do |t|
     t.string "city"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 2021_10_17_115855) do
     t.datetime "start_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "post_id"], name: "index_favorites_on_user_id_and_post_id", unique: true
   end
 
   create_table "posts", force: :cascade do |t|

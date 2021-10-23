@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     end
     resources :comments, only: [:create, :destroy]
   end
-
+  
+  delete "/posts/:id/favorite" => "favorites#destroy", as: 'destroy_favorite'
+  post "/posts/:id/favorite" => "favorites#create", as: 'create_favorite'
 
 end

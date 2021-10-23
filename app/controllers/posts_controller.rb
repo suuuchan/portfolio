@@ -5,12 +5,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.post.new(post_params)
+    @post = current_user.posts.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_back(fallback_location: posts_path)
+      redirect_to posts_path
     else
-      redirect_back(fallback_location: posts_path)
+      render new
     end
   end
 
@@ -20,7 +20,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @user = current_user
+    @user = @post.user
     @comment= current_user.comments.new
     @comments=@post.comments
   end

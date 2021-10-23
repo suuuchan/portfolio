@@ -1,0 +1,15 @@
+<h2><%= @diary.created_at.strftime("%Y年%m月%d日") %>の日記</h2>
+<div class = "container">
+    <div class = "row">
+        <div class = "col md-4">
+            <%= attachment_image_tag @diary, :image, :fill, 300, 200, format:"jpeg" %>
+        </div>
+        <div class = "col md-5">
+            <%= @diary.title %>
+            <%= @diary.text %>
+        </div>
+    </div>
+    <div class = "row">
+        <%= link_to "削除する",diary_path(@diary.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-outline-danger" %>
+    </div>
+</div>
