@@ -5,10 +5,10 @@ Rails.application.routes.draw do
 
   root to: "homes#top"
   get "/about" => "homes#about"
-  patch "/users" => "users#withdraw"
+  # patch "/users" => "users#withdraw"
   # get "/posts" => "posts#index"
   # post "/posts" => "posts#create"
-  # delete "/posts" => "post#destroy_all"
+  delete "/posts" => "posts#destroy_all"
   # delete "/diaries" => "diaries#destroy_all"
 
 
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :users, only: [:index, :show, :edit, :update] do
+  resources :users, only: [:index, :show, :edit, :update, :destroy] do
     member do
       get "unsubscribe"
     end
@@ -28,9 +28,9 @@ Rails.application.routes.draw do
   end
 
   resources :posts do
-    collection do
-      delete "destroy_all"
-    end
+    # collection do
+    #   delete "destroy_all"
+    # end
     resources :comments, only: [:create, :destroy]
   end
   

@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-sm-12 px-sm-0">
+      <h2>本当に退会しますか？</h2>
+      <p>退会すると、今までの投稿や、</p>
+      <p>日記が削除されてしまいます。退会される場合は、「退会する」ボタンを選択してください。</p>
+      <%= link_to "退会をやめておく", user_path(@user.id), class: "btn btn-outline-warning" %>
+      <%= link_to "退会する", user_path(@user.id), method: :delete, class: "btn btn-outline-danger" %>
+    </div> 
+  </div>
+</div>

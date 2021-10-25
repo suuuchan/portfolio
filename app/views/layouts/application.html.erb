@@ -12,12 +12,12 @@
   </head>
 
   <body>
-    <header class="shadow-sm">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-white">
+    <header class="shadow-none">
+      <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
           <div class = "navbar-brand p-3">
             <%= link_to "/" do %>
-             <%= image_tag 'img_logo.png',size: "120x120" %>
+             <%= image_tag 'food_01.png',size: "200x50" %>
             <% end %>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,29 +27,29 @@
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
               <li>
-                <%= link_to "マイページ", user_path(current_user.id), class: "fas fa-home nav-link text-secondary" %>
+                <%= link_to "マイページ", user_path(current_user.id) %>
               </li>
               <li>
-                <%= link_to "成長日記", diaries_path, class: "fas fa-home nav-link text-secondary" %>
+                <%= link_to "成長日記", diaries_path %>
               </li>
               <li>
-                <%= link_to "投稿する", new_post_path, class: "fas fa-home nav-link text-secondary" %>
+                <%= link_to "投稿する", new_post_path %>
               </li>
               <li>
-                <%= link_to "メンバーの投稿", posts_path, class: "fas fa-users nav-link text-secondary" %>
+                <%= link_to "メンバーの投稿", posts_path %>
               </li>
               <li>
-                <%= link_to "ログアウト",destroy_user_session_path, method: :delete, class:"fas fa-sign-out-alt nav-link text-secondary" %>
+                <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
               </li>
               <% else %>
               <li>
-                <%= link_to "つちっこについて",about_path, class: "fas fa-carrot nav-link text-secondary" %>
+                <%= link_to "つちっこについて",about_path %>
               </li>
               <li>
-                <%= link_to "メンバー登録",new_user_registration_path, class: "fas fa-lemon nav-link text-secondary" %>
+                <%= link_to "メンバー登録",new_user_registration_path %>
               </li>
               <li>
-                <%= link_to "ログイン",new_user_session_path, class: "fas fa-apple-alt nav-link text-secondary" %>
+                <%= link_to "ログイン",new_user_session_path %>
               </li>
               <% end %>
             </ul>

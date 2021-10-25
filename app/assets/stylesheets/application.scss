@@ -19,6 +19,7 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 @import "simple_calendar";
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap');
 
 
 .navbar-toggler{
@@ -29,15 +30,14 @@
   background-color: #734e30;
 }
 
-@font-face {
-  font-family: 'NotoSansJP-Light';
-  src: font-url('NotoSansJP-Light.otf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+body{
+  font-family: 'Kiwi Maru', serif;
+  background-color: #edeae2;
+  color: #2e323b;
 }
 
-body{
-  font-family: 'NotoSansJP-Light';
+li{
+  margin-left: 3em;
 }
 
 

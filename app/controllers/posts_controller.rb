@@ -26,13 +26,13 @@ class PostsController < ApplicationController
   end
   
   def destroy_all
-    @post=current_user.posts
-    @post.destroy_all
-    redirect_to user_path(current_user)
+    @posts=current_user.posts
+    @posts.destroy_all
+    redirect_to user_path(current_user.id)
   end
 
   private
   def post_params
-    params.require(:post).permit(:title, :text, :image)
+    params.require(:post).permit(:title, :text, :image_id)
   end
 end

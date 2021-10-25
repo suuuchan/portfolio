@@ -1,31 +1,38 @@
-<div class = "row">
-  <div class = "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-    <%= form_with model:@user, url:user_path(current_user.id), local:true do |f| %>
-    <h2>登録情報変更</h2>
-    <div class = "form">
-      <table class = "table table-borderless">
-        <tr>
-          <th>プロフィール写真</th>
-          <td><%= f.attachment_field :image, placeholder:"プロフィール写真" %></td>
-        </tr>
-        <tr>
-          <th>ニックネーム</th>
-          <td><%= f.text_field :nickname, placeholder:"とまっとくん" %></td>
-        </tr>
-        <tr>
-          <th>ユーザーネーム</th>
-          <td><%= f.text_area :username, placeholder:"tomattokun25" %></td>
-        </tr>
-        <tr>
-          <th>育ててる作物</th>
-          <td><%= f.text_field :crop, placeholder:"トマトの家庭菜園をはじめました！" %></td>
-        </tr>
-      </table>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-sm-12 px-sm-0">
+      <%= form_with model:@user, url:user_path(current_user.id), local:true do |f| %>
+      <h2>登録情報変更</h2>
+      <div class="form">
+        <table class="table table-borderless">
+          <tr>
+            <th>プロフィール写真</th>
+            <td><%= f.attachment_field :image, placeholder:"プロフィール写真" %></td>
+          </tr>
+          <tr>
+            <th>ニックネーム</th>
+            <td><%= f.text_field :nickname, placeholder:"とまっとくん", class: 'form-control' %></td>
+          </tr>
+          <tr>
+            <th>ユーザーネーム</th>
+            <td><%= f.text_area :username, placeholder:"tomattokun25", class: 'form-control' %></td>
+          </tr>
+          <tr>
+            <th>育ててる作物</th>
+            <td><%= f.text_field :crop, placeholder:"トマト", class: 'form-control' %></td>
+          </tr>
+          <tr>
+            <th>自己紹介</th>
+            <td><%= f.text_area :introduction, class: 'form-control', size: "20x5", placeholder:"トマトの家庭菜園をはじめました！" %></td>
+          </tr>
+        </table>
+      </div>
+      <div class="form">
+        <%= f.submit "編集", class: "btn btn-outline-info" %>
+        <%= link_to "退会する", unsubscribe_user_path(@user.id), class: "btn btn-outline-danger" %>
+        <%= link_to "マイページへ戻る", user_path(@user.id), class: "btn btn-outline-warning" %>
+      </div>
+      <% end %>
     </div>
-    <div class = "form">
-      <%= f.submit "編集", class: "btn btn-outline-info" %>
-      <%= f.submit "退会する", class: "btn btn-outline-danger" %>
-    </div>
-    <% end %>
   </div>
 </div>

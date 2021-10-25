@@ -7,7 +7,10 @@
 }
 
 .swiper-container {
-  position: relative; 
+  // position: relative; 
+  // margin: 60px;
+  // height: 500px;
+  // width: 700px;
 }
 
 .swiper-container:before {
@@ -25,4 +28,8 @@
 .swiper-wrapper img {
     width: 100%;
     height: auto;
+}
+
+.versial{
+  writing-mode: vertical-rl;
 }

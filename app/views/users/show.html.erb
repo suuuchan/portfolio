@@ -1,20 +1,24 @@
 <div class="container px-sm-0 mt-3">
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-2 sm-1">
         <%= attachment_image_tag @user, :image, size:'100x100', format:"jpeg", class: "rounded-pill" %>
         </div>
-      <div class="col-md-10 d-flex align-items-center">
+      <div class="col-md-4 sm-7 d-flex align-items-center">
         <h2><%= @user.nickname %></h2>
-        <div class="col-md-5">
+        </div>
+        <div class="col-md-2 d-flex align-items-center">
           <% if current_user == @user %>
           <%= link_to "編集する", edit_user_path(current_user.id), class: "btn btn-outline-secondary"  %>
           <% else %>
           <%= render "relationships/follow_button" %>
           <% end %>
         </div>
-        <div class="col-md-3">
-          <p>フォロー：<%= @user.relationships.where(follower_id: @user.id).count %>人</p>
-          <p>フォロワー：<%= @user.relationships.where(followed_id: @user.id).count %>人</p>
+        
+        
+        <div class="col-md-3 d-flex align-items-center">
+          
+          <h4>フォロー：<%= @user.relationships.where(follower_id: @user.id).count %>人</br>
+          フォロワー：<%= @user.relationships.where(followed_id: @user.id).count %>人</h4>
         </div>
 
 
@@ -23,21 +27,22 @@
 
   　 </div>
   <div class = "row">
-    <div class = "col-md-6 ml-4 mt-3">
-      <table class="table table-borderless">
+    <div class = "col-md-6 col-sm-8 ml-4 mt-3">
+      <table class="table table-borderles rounded">
           <tr>
             <th>自己紹介</th>
-            <td></td>
+            <td><%= @user.introduction %></td>
           </tr>
           <tr>
             <th>育てている作物</th>
-            <td><</td>
+            <td><%= @user.crop %></td>
           </tr>
       </table>
     </div>
     <div class="col-md-4 ml-3 mt-2">
       <% if current_user == @user %>
-      <%= link_to "すべての投稿を削除する",destroy_all_posts_path, method: :delete, class: "btn btn-outline-warning" %>
+      <%= link_to "すべての投稿を削除する", posts_path, method: :delete,  data: {confirm: "投稿をすべて削除しますか？"}, class: "btn btn-outline-warning" %>
+      
       <% end %>
     </div>
   </div>
@@ -46,7 +51,9 @@
 
     <!--</div>-->
  <div class="container md-7 px-4 px-sm-0 mt-3">
+   <h2>自分の投稿</h2>
   <div class = "row">
+    
      <% @posts.each do |post| %>
           <ul class = "post">
             <li>
