@@ -1,53 +1,89 @@
-<h2>
-  <% unless current_user == @user then %>
-   <%= @user.nickname %>さんの投稿
-  <% else %>
-   <p>自分の投稿</p>
-  <% end %>
-</h2>
+<div class="container pt-0">
+  <div class = "row">
 
-<div>
-  <%= @post.user_id %>,<%= current_user.id %>
+  <!--  <div class = "col-md-1">-->
+  　　<%#= image_tag 'punpkin.png',:width => '90' %>
+　　<!--</div>-->
+　  <div class = "col-md-7 m-5 text-center">
+　    <h3>
+　      <% unless current_user == @user then %>
+    　    <%= @user.nickname %>さんの投稿
+        <% else %>
+         自分の投稿
+        <% end %>
+      </h3>
+    </div>
+    <!--<div class = "col-md-1 m-4">-->
+     <%#= image_tag 'punpkin.png',:width => '90' %>
+    <!--</div>-->
+  </div>
+<%#= @post.user_id %><%#= current_user.id %>
+<% if @post.user_id == current_user.id %>
+ <%= link_to "投稿を削除", post_path(@post.id), method: :delete, class: "btn btn-outline-danger" %>
+<% else %>
+ <div id="favorite-button-<%= @post.id %>">
+ <% if current_user&.favorite?(@post) %>
+  <%= render "favorites/unfavorite_button", post: @post %>
+ <% else %>
+  <%= render "favorites/favorite_button", post: @post %>
+ <% end %>
+ </div>
+<% end %>
+
+ <%= notice %>
+ <div class="row">
+  <div class = "col-md-6 m-3">
+    <%= @post.created_at.to_s(:datetime_jp) %>
+    <%= attachment_image_tag @post, :image, :fill, 400, 300, format:"jpeg" %>
+    <h4>コメント</h4>
+
+<%= form_with(model:[@post,@comment], local: true) do |f| %>
+<%= f.hidden_field :post_id, value: @post.id %>
+<%= f.hidden_field :user_id, value: @user.id %>
+<%= f.text_area :text, placeholder: "本文" %>
+<%= f.submit "コメントする", class: "btn btn-outline-info btn-sm" %>
+<% end %>
+
+<% @comments.each do |comment| %>
+<div class="row">
+<div class="col-md-12 sm-12">
+<%= comment.user.nickname %>
+
+<div class="balloon">
+<%= comment.text %>
 </div>
-  <% if @post.user_id == current_user.id %>
-   <%= link_to "投稿を削除", post_path(@post.id), method: :delete %>
-   <%= link_to "編集する", edit_post_path(@post.id) %>
-  <% else %>
-  <div id="favorite-button-<%= @post.id %>">
-    <% if current_user&.favorite?(@post) %>
-     <%= render "favorites/unfavorite_button", post: @post %>
-    <% else %>
-     <%= render "favorites/favorite_button", post: @post %>
-    <% end %>
-  </div>
-  <% end %>
+<%= link_to "コメント削除", post_comment_path(@post.id, comment.id), method: :delete, class: "btn btn-outline-danger btn-sm" %>
+<!--<div class="col-md-4">-->
 
-<div class="container px-10 px-sm-0">
-  <div class="row">
-    <div class = "col-md-4 m-3">
-      <%= @post.created_at.to_s(:datetime_jp) %>
-      <%= attachment_image_tag @post, :image, :fill, 400, 300, format:"jpeg" %>
-    </div>
-    <div class = "col-md-7">
-      <%= @post.title %>
-      <%= @post.text %>
-    </div>
-  </div>
-    <div class="col-md-8">
-      <p>コメント</p>
-      <%= form_with(model:[@post,@comment], local: true) do |f| %>
-      <%= f.hidden_field :post_id, value: @post.id %>
-      <%= f.hidden_field :user_id, value: @user.id %>
-      <%= f.text_area :text, placeholder: "本文" %>
-      <%= f.submit "コメントする", class: "btn btn-outline-danger" %>
-      <% end %>
-      <% @comments.each do |comment| %>
-      <%= comment.user.nickname %>
-      <%= comment.text %>
-      <% end %>
+<!--</div>-->
+</div>
+</div>
+
+
+
+<% end %>
+
+
+</div>
+
+  <div class = "col-md-3 m-4">
+    <div class="versial">
+      <h4><%= @post.title %></h4>
+      <p><%= @post.text %></p>
     </div>
   </div>
  </div>
+</div>
+<!--<div class="container px-sm-0">-->
+<!--<div class="row">-->
+
+<!--<div class="col-md-2">-->
+
+<!--</div>-->
+<!--</div>-->
+</div>
+
+
 
 
 

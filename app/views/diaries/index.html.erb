@@ -1,7 +1,19 @@
+<%= notice %>
+<% if @diary.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@diary.errors.count, "このエラーで日記を登録できません。") %></h2>
+      <ul>
+        <% @diary.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
 <div class = "container">
   <h2>つちっこ成長日記</h2>
   <div class = "col-md-8 col-sm-12">
     <div class = "row">
+
     <%= form_with model:@diary, url:diaries_path, local:true do |f| %>
     <table>
       <tr>
@@ -24,7 +36,7 @@
   </div>
   <% end %>
   <div class = "col-md-10 col-sm-12">
-    <%= month_calendar events: @user.diaries do |date, diaries| %>
+    <%= month_calendar events: current_user.diaries do |date, diaries| %>
      <%= date.day %>
      <% diaries.each do |diary| %>
       <div>

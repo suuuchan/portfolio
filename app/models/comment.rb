@@ -1,5 +1,5 @@
 class Comment < ApplicationRecord
   belongs_to :post
   belongs_to :user
-  attachment :image
+  validates :text, presence: true, length: {maximum: 30}
 end

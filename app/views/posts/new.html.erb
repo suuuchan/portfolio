@@ -1,3 +1,13 @@
+<% if @post.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@post.errors.count, "このエラーで編集完了できません") %></h2>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
 <div class = "row">
   <div class = "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
     <%= form_with model:@post, url:posts_path, local:true do |f| %>

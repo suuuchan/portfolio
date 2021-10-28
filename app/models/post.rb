@@ -5,5 +5,7 @@ class Post < ApplicationRecord
   has_many :users, through: :favorites
   attachment :image
   
-  
+  validates :title, presence: true, length: { minimum: 2, maximum: 10 }
+  validates :text, presence: true, length: { minimum: 2, maximum: 30 }
+  validates :image, presence: true
 end

@@ -1,55 +1,100 @@
-<h2>Sign up</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-sm-12 px-sm-0">
+<h2>新規メンバー登録</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   
-  <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :introduction %><br />
-    <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :crop %><br />
-    <%= f.text_area :crop, autofocus: true, autocomplete: "crop" %>
-  </div>
-  
-   
-  <div class="field">
-    <%= f.label :image %><br />
-    <%= f.attachment_field :image, placeholder:"添付写真" %>
-  </div>  
-
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+  <div class="form">
+        <table class="table table-borderless">
+          <tr>
+            <th>ニックネーム</th>
+            <td><%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %></td>
+          </tr>
+          <tr>
+            <th>ユーザーネーム</th>
+            <td><%= f.text_field :username, autofocus: true, autocomplete: "username" %></td>
+          </tr>
+          <tr>
+            <th>自己紹介</th>
+            <td><%= f.text_area :introduction, autofocus: true, autocomplete: "introduction" %></td>
+          </tr>
+          <tr>
+            <th>育てている作物</th>
+            <td><%= f.text_area :crop, autofocus: true, autocomplete: "crop" %></td>
+          </tr>
+          <tr>
+            <th>プロフィール写真</th>
+            <td><%= f.attachment_field :image, placeholder:"添付写真" %></td>
+          </tr>
+          <tr>
+            <th>Eメール</th>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+          </tr>
+          <tr>
+            <th>パスワード</th>
+            <td><%#= f.label :password %>
+                <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br />
+                <%= f.password_field :password, autocomplete: "new-password" %>
+            </td>
+          </tr>
+          <tr>
+            <th>もう一度パスワードを入力</th>
+            <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+          </tr>
+          </table>
+          <div class="actions">
+           <%= f.submit "メンバー登録" %>
+          </div>
+          <% end %>
+</div>
+</div>
+</div>
 
 <%= render "devise/shared/links" %>
+  
+
+  <!--<div class="field">-->
+    <%#= f.label :nickname %><br />
+    
+  <!--</div>-->
+
+  <!--<div class="field">-->
+    <%#= f.label :introduction %><br />
+    
+  <!--</div>-->
+
+  <!--<div class="field">-->
+    <%#= f.label :crop %><br />
+    
+  <!--</div>-->
+
+
+  <!--<div class="field">-->
+    <%#= f.label :image %><br />
+    
+  <!--</div>-->
+
+  <!--<div class="field">-->
+    <%#= f.label :username %><br />
+    
+  <!--</div>-->
+
+  <!--<div class="field">-->
+    <%#= f.label :email %><br />
+    
+  <!--</div>-->
+
+  <!--<div class="field">-->
+    
+  <!--</div>-->
+
+  <!--<div class="field">-->
+    <%#= f.label :password_confirmation %><br />
+    
+  <!--</div>-->
+
+  

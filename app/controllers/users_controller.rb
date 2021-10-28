@@ -9,20 +9,30 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    if @user == current_user
-       render "edit"
-    else
-      redirect_to user_path(current_user.id)
-    end
+    @user = current_user
+    # if @user.save
+    #   render "edit"
+    # else
+    #   redirect_to user_path(current_user.id)
+    # end
   end
 
   def update
     @user=User.find(params[:id])
+    @user=current_user
     if @user.update(user_params)
-      redirect_to user_path(@user.id), notice: "編集内容、きちんと保存できました！"
+      redirect_to user_path(@user.id)
+      flash[:notice] = "編集内容をきちんと保存できました！"
     else
       render :edit
     end
+  end
+  
+  def destroy
+    @user=current_user
+    @user.destroy
+    flash[:notice] = "無事、退会できました！"
+    redirect_to :root
   end
 
   def unsubscribe

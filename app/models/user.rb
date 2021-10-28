@@ -11,11 +11,16 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followings, through: :relationships, source: :followed
-  
+
   has_many :favorites, dependent: :destroy
   has_many :favorite_posts, through: :favorites, source: :post
 
   validates :username, uniqueness: true
+  validates :image, presence: true
+  validates :nickname, presence: true, length: { minimum: 2, maximum: 10 }
+  validates :username, presence: true, length: { minimum: 2, maximum: 100 }
+  validates :crop, presence: true
+  validates :introduction, presence: true, length: {maximum: 30 }
   attachment :image
 
   def follow(user_id)

@@ -1,5 +1,5 @@
 class DiariesController < ApplicationController
-  before_action :ensure_correct_user, only: [:edit, :update, :destroy, :destroy_all]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy, :destroy_all, :show]
 
   def index
     @diary = Diary.new
@@ -13,19 +13,18 @@ class DiariesController < ApplicationController
   end
 
   def create
-    @user = current_user
     @diary = Diary.new(diaries_params)
     @diary.user_id = current_user.id
     @diary.start_time = Time.now
     @diaries = current_user.diaries
-    p @diary.user_id,current_user.id,@diary.user_id == current_user.id
-    # if @diary.user_id == current_user.id
-    @diary.save
-    flash[:notice] = "日記作成完了！"
-    redirect_to diaries_path
-    # else
-    #   render :index
-    # end
+
+    if @diary.save
+      flash[:notice] = "日記作成完了！"
+      redirect_to diaries_path
+    else
+     render :index
+    end
+
   end
 
   def destroy
@@ -43,6 +42,7 @@ class DiariesController < ApplicationController
     end
   end
 
+  private
   def diaries_params
     params.require(:diary).permit(:title, :text, :image)
   end
