@@ -18,7 +18,7 @@ class User < ApplicationRecord
   validates :username, uniqueness: true
   validates :image, presence: true
   validates :nickname, presence: true, length: { minimum: 2, maximum: 10 }
-  validates :username, presence: true, length: { minimum: 2, maximum: 100 }
+  validates :username, presence: true, length: { minimum: 2, maximum: 10 }
   validates :crop, presence: true
   validates :introduction, presence: true, length: {maximum: 30 }
   attachment :image

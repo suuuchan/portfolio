@@ -20,14 +20,21 @@ class UsersController < ApplicationController
   def update
     @user=User.find(params[:id])
     @user=current_user
-    if @user.update(user_params)
-      redirect_to user_path(@user.id)
-      flash[:notice] = "編集内容をきちんと保存できました！"
+    # binding.irb
+    @user.assign_attributes(user_params)
+    if (@user.changed - ["image_id"]).present? || user_params[:image] != "{}"
+       if @user.save
+         redirect_to user_path(@user.id)
+         flash[:notice] = "編集内容を保存できました"
+       else
+         render :edit
+       end
     else
-      render :edit
+       redirect_to user_path(@user.id)
+       flash[:notice] = "今回の編集では、変更がありませんでした。"
     end
   end
-  
+
   def destroy
     @user=current_user
     @user.destroy
@@ -49,6 +56,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:nickname, :username, :introduction, :image, :crop)
+    params.require(:user).permit(:nickname, :username, :introduction, :image, :crop, :email)
   end
 end

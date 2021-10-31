@@ -1,4 +1,5 @@
-<div class="container px-sm-0">
+<%= notice %>
+<div class="container center-block">
   <!--<div class="row">-->
   <!--  <div class = "col-md-12 offset-md-1">-->
       <div class = "row">
@@ -6,19 +7,22 @@
         <!--<div class = "col-md-1 sm-2 m-4">-->
           <%#= image_tag 'nasubi.png',:width => '60' %>
         <!--</div>-->
-        <div class = "col-md-10 sm-10 m-5 text-center">
+        <div class = "col-md-12 col-sm-12 mt-3 mb-5 text-center">
           <h2>投稿一覧</h2>
         <!--</div>-->
         <!--<div class = "col-md-1 sm-2 m-4">-->
           <%#= image_tag 'nasubi.png',:width => '60' %>
         <!--</div>-->
         </div>
+        </div>
         <div class="row">
+
           <% @posts.each do |post| %>
-          <ul class = "post">
+          <div class = "col-md-6 col-sm-12 text-center">
+          <ul class = "post pl-0">
             <li>
               <%= link_to post_path(post.id) do %>
-              <%= attachment_image_tag post, :image, size:'300x200', format:"jpeg", class:"rounded-pill" %>
+              <%= attachment_image_tag post, :image, size:'300x230', format:"jpeg", class:"rounded-pill" %>
               <% end %>
             </li>
             <li>
@@ -30,8 +34,10 @@
               <% end %>
             </li>
           </ul>
+          </div>
         <% end %>
-        </div>
+
+      </div>
       </div>
   <!--  </div>-->
   <!--</div>-->

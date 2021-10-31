@@ -6,6 +6,6 @@ class Post < ApplicationRecord
   attachment :image
   
   validates :title, presence: true, length: { minimum: 2, maximum: 10 }
-  validates :text, presence: true, length: { minimum: 2, maximum: 30 }
+  validates :text, presence: true, length: { minimum: 2, maximum: 50 }
   validates :image, presence: true
 end

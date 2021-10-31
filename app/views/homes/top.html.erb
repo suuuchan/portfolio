@@ -2,14 +2,14 @@
 <div class="container">
  <div class="row">
     <% @weathers.each do |weather| %>
-    <div class="col-md-4 col-sm-10">
-      <%= "#{weather.city} // #{weather.weather_forecast.weather_main} // #{weather.weather_forecast.temp}℃" %>
+    <div class="col-md-4 col-sm-8">
+      <%= "#{weather.city}  #{weather.weather_forecast.weather_main} // #{weather.weather_forecast.temp}℃" %>
       <%= image_tag "http://openweathermap.org/img/wn/#{weather.weather_forecast.icon}@2x.png" %>
     </div>
     <% end %>
  </div>
  <div class="row">
-    <div class="col-md-7 col-sm-5">
+    <div class="col-md-6 col-sm-12">
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><div class="box"><%= image_tag 'tanbo.jpg' %></div></div>
@@ -44,16 +44,16 @@
         </script>
     </div>
 
-    <div class="col-md-5 col-sm-4">
-        <div class="versial">
-            <h2>このサイトに訪問してくださり、</br>ありがとうございます。</h2>
-            <h4>作物を育てるたのしさをみんなで共感したい</h4>
+    <div class="col-md-6 col-sm-12">
+      <div class="versial">
+        <h2>このサイトに訪問してくださり、</br>ありがとうございます。</h2>
+        <h4>作物を育てるたのしさをみんなで共感したい</h4>
             そんな思いからこのサイト「つちっこ」をオープンしました。</br></br>
             自分が育てた作物を共有したり、</br>
             時には、育て方について質問してみたり</br>
             同じ作物を育てている方と交流してみたり</br></br>
             わくわくした気持ちになっていただけたら嬉しいです。
-        </div>
+      </div>
     </div>
 
  </div>

@@ -9,19 +9,31 @@ ul {
 
 .size{
   color:#ee7800;
-  font-size: 3em;
+  font-size: 1.5em;
+
 }
 
 .sizes{
   color:#c0c0c0;
-  font-size: 3em;
+  font-size: 1.5em;
+
 }
 
-.versial{
+.versial-content{
   writing-mode: vertical-rl;
-  // text-combine-upright: digi2２;
-  word-break: keep-all;
-  height: 20px;
+  text-orientation: upright;
+  /*word-break: keep-all;*/
+  height: 300px;
+  text-align: justify;
+  text-justify: inter-ideograph;
+  /*column-count: 20;
+  height:100px;*/
+}
+
+.space-pre-line {
+  white-space: pre-line;
+  width: 100px;
+  float: left;
 }
 
 .balloon {

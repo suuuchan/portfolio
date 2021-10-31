@@ -1,1 +1,3 @@
-<%= link_to "", destroy_favorite_path(current_user.favorites.find_by(post: @post)), method: :delete, class: "far fa-smile-beam size", remote: :true %>
+<div class="unfavorite">
+ <%= link_to "", destroy_favorite_path(current_user.favorites.find_by(post: @post)), method: :delete, class: "fas fa-smile-beam size", remote: :true %>
+</div>

@@ -1,79 +1,53 @@
 <%= notice %>
 <div class="container px-sm-0 mt-3">
   <div class="row">
-    <div class="col-md-2 sm-1">
-        <%= attachment_image_tag @user, :image, size:'100x100', format:"jpeg", class: "rounded-pill" %>
-        </div>
-      <div class="col-md-4 sm-7 d-flex align-items-center">
-        <h2><%= @user.nickname %></h2>
-        <p>//<%= @user.username %></p>
-        </div>
-        <div class="col-md-2 d-flex align-items-center">
-          <% if current_user == @user %>
-          <%= link_to "編集する", edit_user_path(current_user.id), class: "btn btn-outline-secondary"  %>
-          <% else %>
-          <%= render "relationships/follow_button" %>
-          <% end %>
-        </div>
-
-
-        <div class="col-md-3 d-flex align-items-center">
-
-          <h4>フォロー：<%= @user.relationships.where(follower_id: @user.id).count %>人</br>
-          フォロワー：<%= @user.relationships.where(followed_id: @user.id).count %>人</h4>
-        </div>
-
-
-
-    　</div>
-
-  　 </div>
-  <div class = "row">
-    <div class = "col-md-6 col-sm-8 ml-4 mt-3">
-      <div class="ballo">
-      <ul>
-
-            <li>自己紹介:<%= @user.introduction %></li>
-
-            <li>育てている作物:<%= @user.crop %></ki>
-
-          </ul>
-
-      </div>
+    <div class="col-md-3 sm-1">
+      <%= attachment_image_tag @user, :image, size:'150x130', format:"jpeg", class: "rounded" %>
     </div>
-    <div class="col-md-4 ml-3 mt-2">
+    <div class="col-md-7 col-sm-7">
+      <h3 class="nickname"><%= @user.nickname %></h3>
+      <p class="username"><%= @user.username %></p>
       <% if current_user == @user %>
-      <%= link_to "すべての投稿を削除する", posts_path, method: :delete,  data: {confirm: "投稿をすべて削除しますか？"}, class: "btn btn-outline-warning" %>
-
+        <%= link_to "編集する", edit_user_path(current_user.id), class: "btn btn-outline-secondary btn-sm"  %>
+      <% else %>
+        <%= render "relationships/follow_button" %>
+      <% end %>
+      <% if current_user == @user %>
+         <%= link_to "すべての投稿を削除する", posts_path, method: :delete, data: {confirm: "投稿をすべて削除しますか？"}, class: "btn btn-outline-warning btn-sm" %>
       <% end %>
     </div>
   </div>
-
-    <!--<div class = "col-md-4">-->
-
-    <!--</div>-->
- <div class="container md-7 px-4 px-sm-0 mt-3">
-   <h2>自分の投稿</h2>
-  <div class = "row">
-
-     <% @posts.each do |post| %>
-          <ul class = "post">
-            <li>
-              <%= link_to post_path(post.id) do %>
-              <%= attachment_image_tag post, :image, size:'300x200', format:"jpeg", class:"rounded-pill" %>
-              <% end %>
-            </li>
-            <li>
-              <strong>
-                <%= link_to post_path(post.id) do %>
-                 <%= post.title %>
-                <% end %>
-              </strong>
-            </li>
-          </ul>
+  <div class="row">
+    <div class="col-md-8 col-sm-10 mt-5 d-flex align-items-center balloon">
+      <p><strong>フォロー：<%= @user.relationships.where(follower_id: @user.id).count %>人</br>
+      フォロワー：<%= @user.relationships.where(followed_id: @user.id).count %>人</strong></p>
+      <ul>
+        <li>自己紹介:<%= @user.introduction %></li>
+        <li>育てている作物:<%= @user.crop %></li>
+      </ul>
+    </div>
+  </div>  
+  <div class="row">
+    <div class="col-md-6 px-12 px-sm-0 mt-3">
+      <h2>投稿一覧</h2>
+    </div>
+  </div>
+  <div class="row">
+    <% @posts.each do |post| %>
+    <ul class="post">
+      <li>
+        <%= link_to post_path(post.id) do %>
+         <%= attachment_image_tag post, :image, size: '200x130', format:"jpeg", class:"rounded-pill" %>
         <% end %>
+      </li>
+      <li>
+        <strong>
+          <%= link_to post_path(post.id) do %>
+            <%= post.title %>
+          <% end %>
+        </strong>
+      </li>
+    </ul>
+    <% end %>
   </div>
-
-
-
-  </div>
+</div>

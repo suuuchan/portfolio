@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8 col-sm-12 px-sm-0">
+    <div class="col-sm-12 col-md-10 px-5 px-sm-0 mx-auto">
 <h2>新規メンバー登録</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -8,6 +8,10 @@
   
   <div class="form">
         <table class="table table-borderless">
+          <tr>
+            <th style="width: 50%"></th>
+            <td style="width: 50%"></td>
+          </tr>
           <tr>
             <th>ニックネーム</th>
             <td><%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %></td>
@@ -18,11 +22,11 @@
           </tr>
           <tr>
             <th>自己紹介</th>
-            <td><%= f.text_area :introduction, autofocus: true, autocomplete: "introduction" %></td>
+            <td><%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", placeholder: "最近、家庭菜園をはめました！" %></td>
           </tr>
           <tr>
             <th>育てている作物</th>
-            <td><%= f.text_area :crop, autofocus: true, autocomplete: "crop" %></td>
+            <td><%= f.text_area :crop, autofocus: true, autocomplete: "crop", placeholder: "トマト！" %></td>
           </tr>
           <tr>
             <th>プロフィール写真</th>
@@ -30,13 +34,13 @@
           </tr>
           <tr>
             <th>Eメール</th>
-            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "samaple@smile.com" %></td>
           </tr>
           <tr>
             <th>パスワード</th>
             <td><%#= f.label :password %>
                 <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <em>(<%= @minimum_password_length %>文字以上で入力しましょう。)</em>
                 <% end %><br />
                 <%= f.password_field :password, autocomplete: "new-password" %>
             </td>

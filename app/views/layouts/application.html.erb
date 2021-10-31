@@ -8,7 +8,6 @@
     <script src="//cdn.jsdelivr.net/npm/swiper@4.5.1/dist/js/swiper.min.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
   </head>
 
   <body>
@@ -21,8 +20,8 @@
             <% end %>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+            <span class="navbar-toggler-icon"></span>
+          </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
@@ -43,9 +42,6 @@
               </li>
               <% else %>
               <li>
-                <%= link_to "つちっこについて",about_path %>
-              </li>
-              <li>
                 <%= link_to "メンバー登録",new_user_registration_path %>
               </li>
               <li>
@@ -56,7 +52,7 @@
           </div>
         </div>
       </nav>
- </header>
-	<%= yield %>
+    </header>
+	  <%= yield %>
   </body>
 </html>

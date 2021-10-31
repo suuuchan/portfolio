@@ -1,64 +1,66 @@
 <%= notice %>
 <% if @diary.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@diary.errors.count, "このエラーで日記を登録できません。") %></h2>
-      <ul>
-        <% @diary.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+<div id="error_explanation">
+  <h2><%= pluralize(@diary.errors.count, "このエラーで日記を登録できません。") %></h2>
+  <ul>
+    <% @diary.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
     <% end %>
+  </ul>
+</div>
+<% end %>
+
 <div class = "container">
   <h2>つちっこ成長日記</h2>
-  <div class = "col-md-8 col-sm-12">
-    <div class = "row">
-
-    <%= form_with model:@diary, url:diaries_path, local:true do |f| %>
-    <table>
-      <tr>
-        <th>写真</th>
-        <td><%= f.attachment_field :image %></td>
-      </tr>
-      <tr>
-        <th>タイトル</th>
-        <td><%= f.text_field :title %></td>
-      </tr>
-      <tr>
-        <th>記録</th>
-        <td><%= f.text_area :text %></td>
-      </tr>
-    </table>
-    <div class = "form">
-    <%= f.submit "登録する", class: "btn btn-outline-warning" %>
-    </div>
+  <div class = "row">
+    <div class = "col-md-8 col-sm-12">
+      <%= form_with model:@diary, url:diaries_path, local:true do |f| %>
+      <table>
+        <tr>
+          <th>写真</th>
+          <td><%= f.attachment_field :image %></td>
+        </tr>
+        <tr>
+          <th>タイトル</th>
+          <td><%= f.text_field :title %></td>
+        </tr>
+        <tr>
+          <th>記録</th>
+          <td><%= f.text_area :text %></td>
+        </tr>
+      </table>
+      <div class = "form">
+        <%= f.submit "登録する", class: "btn btn-outline-warning btn-sm" %>
+      </div>
     </div>
   </div>
   <% end %>
-  <div class = "col-md-10 col-sm-12">
-    <%= month_calendar events: current_user.diaries do |date, diaries| %>
-     <%= date.day %>
-     <% diaries.each do |diary| %>
+  <div class="row">
+    <div class = "col-md-10 col-sm-12 mt-5">
+      <%= month_calendar events: current_user.diaries do |date, diaries| %>
+        <%= date.day %>
+        <% diaries.each do |diary| %>
       <div>
         <%= link_to diary.title, diary_path(diary.id) %>
       </div>
-      <% end %>
-    <% end %>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>タイトル</th>
-          <th>記録</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @diaries.each do |diary| %>
-          <tr>
-            <td><%= diary.title %></td>
-            <td><%= diary.text %></td>
-          </tr>
         <% end %>
-      </tbody>
-    </table>
+      <% end %>
+      <!--<table class="table table-bordered">-->
+      <!--  <thead>-->
+      <!--    <tr>-->
+      <!--      <th>タイトル</th>-->
+      <!--      <th>記録</th>-->
+      <!--    </tr>-->
+      <!--  </thead>-->
+      <!--  <tbody>-->
+      <!--    <#% @diaries.each do |diary| %>-->
+      <!--      <tr>-->
+      <!--        <td><%#= diary.title %></td>-->
+      <!--        <td><%#= diary.text %></td>-->
+      <!--      </tr>-->
+      <!--    <#% end %>-->
+      <!--  </tbody>-->
+      <!--</table>-->
     </div>
+  </div>
 </div>
