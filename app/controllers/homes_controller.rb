@@ -4,8 +4,5 @@ class HomesController < ApplicationController
     @weathers = City.all
     # binding.irb
   end
-
-  def about
-  end
-
+  
 end

@@ -1,67 +1,68 @@
-<div class="container pt-0">
-  <div class = "row">
-    <div class = "col-md-12 mt-3 pb-0 text-center">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-3 pb-0 text-center">
       <h3>
         <% unless current_user == @user then %>
-       <%= @user.nickname %>さんの投稿
-    <% else %>
-     自分の投稿
-    <% end %>
-   </h3>
-  </div>
- </div>
- <%= notice %>
- <div class="row">
-   <div class = "col-md-8 sm-10">
-        <%= @post.created_at.to_s(:datetime_jp) %></br>
-        <%= attachment_image_tag @post, :image, :fill, 600, 400, class: "img-fluid", format:"jpeg" %></br>
-        <% if @post.user_id == current_user.id %>
-        <%= link_to "投稿を削除", post_path(@post.id), method: :delete, class: "btn btn-outline-danger btn-sm" %>
-   <% else %>
-    <div id="favorite-button-<%= @post.id %>">
-     <% if current_user&.favorite?(@post) %>
-      <%= render "favorites/unfavorite_button", post: @post %>
-     <% else %>
-      <%= render "favorites/favorite_button", post: @post %>
-     <% end %>
+          <%= @user.nickname %>さんの投稿
+        <% else %>
+          自分の投稿
+        <% end %>
+      </h3>
     </div>
-   <% end %>
-   <h4>コメント</h4>
+  </div>
+
+  <%= notice %>
+  <div class="row">
+    <div class="col-md-8 col-sm-8">
+      <%= @post.created_at.to_s(:datetime_jp) %></br>
+      <%= attachment_image_tag @post, :image, :fill, 600, 400, class: "img-fluid", format:"jpeg" %></br>
+      <% if @post.user_id == current_user.id %>
+        <%= link_to "投稿を削除", post_path(@post.id), method: :delete, class: "btn btn-outline-danger btn-sm" %>
+      <% else %>
+        <div id="favorite-button-<%= @post.id %>">
+          <% if current_user&.favorite?(@post) %>
+            <%= render "favorites/unfavorite_button", post: @post %>
+          <% else %>
+            <%= render "favorites/favorite_button", post: @post %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <h4>コメント</h4>
       <%= form_with(model:[@post,@comment], local: true) do |f| %>
            <%= f.hidden_field :post_id, value: @post.id %>
            <%= f.hidden_field :user_id, value: @user.id %>
            <%= f.text_area :text, placeholder: "本文" %>
            <%= f.submit "コメントする", class: "btn btn-outline-info btn-sm" %>
-         <% end %>
-         <% @comments.each do |comment| %>
-         <table class="table borderless">
-             <tr>
-                 <th><%= link_to user_path(comment.user) do %>
-                      <%= comment.user.nickname %>
-                    <% end %>  
-                 </th>
-                 <td>
-                    <div class="balloon">
-                        <%= comment.text %>
-                    </div>
-                    <% if comment.user == current_user %>
-                     <%= link_to "コメント削除", post_comment_path(@post.id, comment.id), method: :delete, class: "btn btn-outline-danger btn-sm" %>
-                    <% end %> 
-                 </td>
-             </tr>
-         </table>
+      <% end %>
 
-
-     <% end %>
+      <% @comments.each do |comment| %>
+      <table class="table borderless">
+        <tr>
+          <th><%= link_to user_path(comment.user) do %>
+                <%= comment.user.nickname %>
+              <% end %>
+          </th>
+          <td>
+            <div class="balloon">
+              <%= comment.text %>
+            </div>
+            <% if comment.user == current_user %>
+              <%= link_to "コメント削除", post_comment_path(@post.id, comment.id), method: :delete, class: "btn btn-outline-danger btn-sm" %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+      <% end %>
     </div>
-    <div class="col-md-4 sm-10 mt-3 versial-content">
-        <div class="space-pre-line">
-           <h4><%= @post.title %></h4>
-          <p><%= @post.text %></p>
-        </div>
 
+    <div class="col-md-4 col-sm-4 mt-3 versial-content">
+      <div class="space-pre-line">
+        <h4><%= @post.title %></h4>
+        <p><%= @post.text %></p>
+      </div>
     </div>
- </div>
+  </div>
 </div>
 
 

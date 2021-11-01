@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :ensure_correct_user, only: [:edit, :update, :destroy, :unsubscribe]
+  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :unsubscribe]
 
   def show
     @user = User.find(params[:id])

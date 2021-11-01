@@ -1,5 +1,6 @@
 class DiariesController < ApplicationController
-  before_action :ensure_correct_user, only: [:edit, :update, :destroy, :destroy_all, :show]
+  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:show]
 
   def index
     @diary = Diary.new
