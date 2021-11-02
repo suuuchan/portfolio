@@ -3,12 +3,12 @@ class PostsController < ApplicationController
   # before_action :ensure_correct_user, only: [:destroy, :destroy_all]
   
   def new
-    @post = Post.new
+    @post=Post.new
   end
 
   def create
-    @post = current_user.posts.new(post_params)
-    @post.user_id = current_user.id
+    @post=current_user.posts.new(post_params)
+    @post.user_id=current_user.id
     if @post.save
       redirect_to posts_path
     else
@@ -17,15 +17,15 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
-    @post = Post.page(params[:page]).per(12)
+    @posts=Post.all
+    @post=Post.page(params[:page]).per(12)
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post=Post.find(params[:id])
     @comments=@post.comments
-    @user = @post.user
-    @comment= current_user.comments.new
+    @user=@post.user
+    @comment=current_user.comments.new
     @comments=@post.comments
   end
 
@@ -40,7 +40,7 @@ class PostsController < ApplicationController
     @post=Post.find(params[:id])
     @post.user=current_user
     @post.destroy
-    flash[:notice] = "投稿を削除しました。"
+    flash[:notice]="投稿を削除しました。"
     redirect_to posts_path
   end
 

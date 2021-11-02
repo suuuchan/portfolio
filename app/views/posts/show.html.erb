@@ -14,7 +14,8 @@
   <%= notice %>
   <div class="row">
     <div class="col-md-8 col-sm-8">
-      <%= @post.created_at.to_s(:datetime_jp) %></br>
+      <%= @post.created_at.to_s(:datetime_jp) %>
+      <%= link_to "投稿一覧に戻る", posts_path, class: "btn btn-outline-info btn-sm" %></br>
       <%= attachment_image_tag @post, :image, :fill, 600, 400, class: "img-fluid", format:"jpeg" %></br>
       <% if @post.user_id == current_user.id %>
         <%= link_to "投稿を削除", post_path(@post.id), method: :delete, class: "btn btn-outline-danger btn-sm" %>

@@ -12,18 +12,18 @@
       <% else %>
         <%= render "relationships/follow_button" %>
       <% end %>
-      
+
       <% if current_user == @user %>
          <%= link_to "すべての投稿を削除する", posts_path, method: :delete, data: {confirm: "投稿をすべて削除しますか？"}, class: "btn btn-outline-warning btn-sm" %>
       <% end %>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-md-8 col-sm-10 mt-5 d-flex align-items-center balloon">
       <p><strong>
-        フォロー：<%= @user.relationships.where(follower_id: @user.id).count %>人</br>
-        フォロワー：<%= @user.relationships.where(followed_id: @user.id).count %>人
+        フォロー：<%= @user.followings.count %>人</br>
+        フォロワー：<%= @user.followers.count %>人
       </strong></p>
       <ul>
         <li>自己紹介:<%= @user.introduction %></li>
@@ -31,13 +31,13 @@
       </ul>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-md-6 px-12 px-sm-0 mt-3">
       <h2>投稿一覧</h2>
     </div>
   </div>
-  
+
   <div class="row">
     <% @posts.each do |post| %>
     <ul class="post">

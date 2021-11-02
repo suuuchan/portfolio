@@ -1,7 +1,7 @@
 class HomesController < ApplicationController
 
   def top
-    @weathers = City.all
+    @weathers=City.all
     # binding.irb
   end
   

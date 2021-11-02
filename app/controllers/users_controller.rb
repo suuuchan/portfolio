@@ -3,14 +3,14 @@ class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :unsubscribe]
 
   def show
-    @user = User.find(params[:id])
-    @posts = @user.posts
+    @user=User.find(params[:id])
+    @posts=@user.posts
     # byebug
   end
 
   def edit
-    @user = User.find(params[:id])
-    @user = current_user
+    @user=User.find(params[:id])
+    @user=current_user
     # if @user.save
     #   render "edit"
     # else
@@ -26,20 +26,20 @@ class UsersController < ApplicationController
     if (@user.changed - ["image_id"]).present? || user_params[:image] != "{}"
        if @user.save
          redirect_to user_path(@user.id)
-         flash[:notice] = "編集内容を保存できました"
+         flash[:notice]="編集内容を保存できました"
        else
          render :edit
        end
     else
        redirect_to user_path(@user.id)
-       flash[:notice] = "今回の編集では、変更がありませんでした。"
+       flash[:notice]="今回の編集では、変更がありませんでした。"
     end
   end
 
   def destroy
     @user=current_user
     @user.destroy
-    flash[:notice] = "無事、退会できました！"
+    flash[:notice]="無事、退会できました！"
     redirect_to :root
   end
 
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
 
   def ensure_correct_user
     @user=User.find(params[:id])
-    unless @user.id == current_user.id
+    unless @user.id==current_user.id
       redirect_to user_path(@user.id)
     end
   end

@@ -4,12 +4,12 @@ namespace :open_weather_api do
     City.all.each do |city|
       open_weather = Api::OpenWeatherMap::Request.new(city.location_id)
 
-      # リクエスト上限：60回/min
+     
       response = open_weather.request
 
       # binding.irb
 
-      # 3時間ごとのデータ2日分を保存
+      # 3時間ごとのデータ2日分を保存(有料バージョンのため、１日分にする↓)
       # 16.times do |i|
         # params = Api::OpenWeatherMap::Request.attributes_for(response['list'][i])
         # if weather_forecast = WeatherForecast.where(city: city, date: params[:date]).presence
@@ -23,6 +23,7 @@ namespace :open_weather_api do
       weather = WeatherForecast.find_by(city_id: city.id)
 
       # binding.irb
+      #この記述復習
 
       if weather.nil?
         p 'CREATE'
