@@ -1,5 +1,7 @@
 # つちっこ
 
+<img width="1166" alt="スクリーンショット 2021-11-06 17 04 30" src="https://user-images.githubusercontent.com/88092281/140602768-ea4c2943-1668-48ea-b62e-3cfc2bd59686.png">
+
 ## サイト概要
 
 農作物に関わる人、農作物に関心のある人のためのSNSサイトです。
