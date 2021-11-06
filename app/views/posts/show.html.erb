@@ -1,71 +1,73 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12 mt-3 pb-0 text-center">
-      <h3>
-        <% unless current_user == @user then %>
-          <%= @user.nickname %>さんの投稿
-        <% else %>
-          自分の投稿
-        <% end %>
-      </h3>
-    </div>
-  </div>
-
-  <%= notice %>
-  <div class="row">
-    <div class="col-md-8 col-sm-8">
-      <%= @post.created_at.to_s(:datetime_jp) %>
-      <%= link_to "投稿一覧に戻る", posts_path, class: "btn btn-outline-info btn-sm" %></br>
-      <%= attachment_image_tag @post, :image, :fill, 600, 400, class: "img-fluid", format:"jpeg" %></br>
-      <% if @post.user_id == current_user.id %>
-        <%= link_to "投稿を削除", post_path(@post.id), method: :delete, class: "btn btn-outline-danger btn-sm" %>
-      <% else %>
-        <div id="favorite-button-<%= @post.id %>">
-          <% if current_user&.favorite?(@post) %>
-            <%= render "favorites/unfavorite_button", post: @post %>
+<div class="main">
+  <div class="container">
+    <div class="main__title row">
+      <div class="col-md-12 mt-3 pb-0 text-center">
+        <h3>
+          <% unless current_user == @user then %>
+            <%= @user.nickname %>さんの投稿
           <% else %>
-            <%= render "favorites/favorite_button", post: @post %>
+            自分の投稿
           <% end %>
-        </div>
-      <% end %>
-
-      <h4>コメント</h4>
-      <%= form_with(model:[@post,@comment], local: true) do |f| %>
-           <%= f.hidden_field :post_id, value: @post.id %>
-           <%= f.hidden_field :user_id, value: @user.id %>
-           <%= f.text_area :text, placeholder: "本文" %>
-           <%= f.submit "コメントする", class: "btn btn-outline-info btn-sm" %>
-      <% end %>
-
-      <% @comments.each do |comment| %>
-      <table class="table borderless">
-        <tr>
-          <th><%= link_to user_path(comment.user) do %>
-                <%= comment.user.nickname %>
-              <% end %>
-          </th>
-          <td>
-            <div class="balloon">
-              <%= comment.text %>
-            </div>
-            <% if comment.user == current_user %>
-              <%= link_to "コメント削除", post_comment_path(@post.id, comment.id), method: :delete, class: "btn btn-outline-danger btn-sm" %>
-            <% end %>
-          </td>
-        </tr>
-      </table>
-      <% end %>
+        </h3>
+      </div>
     </div>
+    <%= notice %>
+    <div class="main__content row">
+      <div class="main__content__link col-md-8 col-sm-8">
+        <%= @post.created_at.to_s(:datetime_jp) %>
+        <%= link_to "投稿一覧に戻る", posts_path, class: "btn btn-outline-info btn-sm" %></br>
+        <%= attachment_image_tag @post, :image, :fill, 600, 400, class: "img-fluid", format:"jpeg" %></br>
+        <% if @post.user_id == current_user.id %>
+          <%= link_to "投稿を削除", post_path(@post.id), method: :delete, class: "btn btn-outline-danger btn-sm" %>
+        <% else %>
+          <div id="favorite-button-<%= @post.id %>">
+            <% if current_user&.favorite?(@post) %>
+              <%= render "favorites/unfavorite_button", post: @post %>
+            <% else %>
+              <%= render "favorites/favorite_button", post: @post %>
+            <% end %>
+          </div>
+        <% end %>
+        
+         <div class="main__content__comment">
+           <h4 class="main__content__comment__title">コメント</h4>
+           <%= form_with(model:[@post,@comment], local: true) do |f| %>
+             <%= f.hidden_field :post_id, value: @post.id %>
+             <%= f.hidden_field :user_id, value: @user.id %>
+             <%= f.text_area :text, placeholder: "本文" %>
+             <%= f.submit "コメントする", class: "btn btn-outline-info btn-sm" %>
+           <% end %>
+           <% @comments.each do |comment| %>
+           <table class="table borderless">
+             <tr>
+               <th>
+                 <%= link_to user_path(comment.user) do %>
+                   <%= comment.user.nickname %>
+                 <% end %>
+               </th>
+               <td>
+                 <div class="balloon">
+                   <%= comment.text %>
+                 </div>
+                 <% if comment.user == current_user %>
+                   <%= link_to "コメント削除", post_comment_path(@post.id, comment.id), method: :delete, class: "btn btn-outline-danger btn-sm" %>
+                 <% end %>
+               </td>
+             </tr>
+           </table>
+           <% end %>
+         </div>
+      </div>
 
-    <div class="col-md-4 col-sm-4 mt-3 versial-content">
-      <div class="space-pre-line">
-        <h4><%= @post.title %></h4>
-        <p><%= @post.text %></p>
+      <div class="main__content__text col-md-4 col-sm-4 mt-3 versial-content">
+        <div class="space-pre-line">
+          <h4><%= @post.title %></h4>
+          <p><%= @post.text %></p>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
 
 
 

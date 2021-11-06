@@ -1,20 +1,21 @@
 <% if @user.errors.any? %>
 <div id="error_explanation">
-  <h2><%= pluralize(@user.errors.count, "このエラーで編集完了できません") %></h2>
-  <ul>
+  <h2 class="error_explanation__title"><%= pluralize(@user.errors.count, "このエラーで編集完了できません") %></h2>
+  <ul class="error_explanation__message">
     <% @user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+      <li class="error_explanation__message--text"><%= message %></li>
     <% end %>
   </ul>
 </div>
 <% end %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-10 col-sm-12 px-5 px-sm-0 mx-auto">
+<div class="main">
+  <div class="container">
+    <div class="main__form row">
+      <div class="col-md-10 col-sm-12 px-5 px-sm-0 mx-auto">
       <%= form_with model:@user, url:user_path(current_user.id), local:true do |f| %>
       <h2>登録情報変更</h2>
-      <div class="form">
+      <div class="main__form__input">
         <table class="table table-borderless">
           <tr>
             <th style="width: 50%"></th>
@@ -47,12 +48,13 @@
         </table>
       </div>
       
-      <div class="form">
+      <div class="main__form__link">
         <%= f.submit "編集", class: "btn btn-outline-info" %>
         <%= link_to "退会する", unsubscribe_user_path(@user.id), class: "btn btn-outline-danger" %>
         <%= link_to "マイページへ戻る", user_path(@user.id), class: "btn btn-outline-warning" %>
       </div>
       <% end %>
+      </div>
     </div>
   </div>
 </div>

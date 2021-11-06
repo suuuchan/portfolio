@@ -28,9 +28,7 @@ Rails.application.routes.draw do
   end
 
   resources :posts do
-    # collection do
-    #   delete "destroy_all"
-    # end
+    get :search, on: :collection
     resources :comments, only: [:create, :destroy]
   end
   

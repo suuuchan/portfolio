@@ -1,31 +1,50 @@
-<%= notice %>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12 col-sm-12 mt-3 mb-5 text-center">
-      <h2>投稿一覧</h2>
+<div class="main">
+  <%= notice %>
+  <div class="container">
+    <div class="main__title row">
+      <div class="col-md-12 col-sm-12 mt-3 mb-5 text-center">
+        <h2>投稿一覧</h2>
+      </div>
     </div>
-  </div>
-
-  <div class="row">
-    <% @posts.each do |post| %>
-    <div class="col-md-6 col-sm-12 text-center">
-      <ul class="post pl-0">
-        <li>
-          <%= link_to post_path(post.id) do %>
-            <%= attachment_image_tag post, :image, size:'300x230', format:"jpeg", class:"rounded-pill" %>
-          <% end %>
-        </li>
-        <li>
-          <strong><%= post.title %></strong>
-        </li>
-        <li>
-          <%= link_to user_path(post.user_id) do %>
-            <%= post.user.nickname %>
-          <% end %>
-        </li>
-      </ul>
+    <div class="main__search row">
+      <div class="col-md-12 col-sm-12 mt-3 mb-5 text-center">
+        <%= link_to search_posts_path do %>
+          <%= image_tag 'search.png',size: "30x30" %>
+          作物検索はこちら
+        <% end %>
+      </div>
     </div>
-    <% end %>
+    <div class="main__post row">
+     <% @posts.each do |post| %>
+     <div class="col-md-6 col-sm-12 text-center">
+       <ul class="main__post__content pl-0 pb-5">
+         <li>
+           <%= post.created_at.strftime("%Y年%m月%d日") %>
+         </li>
+         <li>
+           <%= link_to post_path(post.id) do %>
+             <%= attachment_image_tag post, :image, size:'300x230', format:"jpeg", class: "rounded-pill" %>
+           <% end %>
+         </li>
+         <li>
+           <%= link_to post_path(post.id), class: "link" do %>
+             <h4><%= post.title %></h4>
+           <% end %>
+         </li>
+         <li>
+           <%= link_to user_path(post.user_id), class: "link" do %>
+             <%= post.user.nickname %>
+           <% end %>さんの投稿
+         </li>
+         <li>
+             <%= post.user.crop %>を育てています
+         </li>
+       </ul>
+     </div>
+     <% end %>
+    </div>
+    <h4 class="main__pagination">
+      <%= paginate @posts %>
+    </h4>
   </div>
 </div>
-

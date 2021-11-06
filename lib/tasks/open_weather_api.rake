@@ -7,23 +7,7 @@ namespace :open_weather_api do
      
       response = open_weather.request
 
-      # binding.irb
-
-      # 3時間ごとのデータ2日分を保存(有料バージョンのため、１日分にする↓)
-      # 16.times do |i|
-        # params = Api::OpenWeatherMap::Request.attributes_for(response['list'][i])
-        # if weather_forecast = WeatherForecast.where(city: city, date: params[:date]).presence
-        #   weather_forecast[0].update!(params)
-        # else
-        #   city.weather_forecasts.create!(params)
-        # end
-        # p params
-      # end
-
       weather = WeatherForecast.find_by(city_id: city.id)
-
-      # binding.irb
-      #この記述復習
 
       if weather.nil?
         p 'CREATE'

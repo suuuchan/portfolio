@@ -1,15 +1,16 @@
-<%= notice %>
-<div class="container">
- <div class="row">
-    <% @weathers.each do |weather| %>
-    <div class="col-md-4 col-sm-8">
-      <%= "#{weather.city}  #{weather.weather_forecast.weather_main} // #{weather.weather_forecast.temp}℃" %>
-      <%= image_tag "http://openweathermap.org/img/wn/#{weather.weather_forecast.icon}@2x.png" %>
+<div class="main">
+  <%= notice %>
+  <div class="container">
+    <div class="main__weather row">
+      <% @weathers.each do |weather| %>
+      <div class="main__weather__content col-md-4 col-sm-8">
+        <%= "#{weather.city}  #{weather.weather_forecast.weather_main} // #{weather.weather_forecast.temp}℃" %>
+        <%= image_tag "http://openweathermap.org/img/wn/#{weather.weather_forecast.icon}@2x.png" %>
+      </div>
+      <% end %>
     </div>
-    <% end %>
- </div>
- <div class="row">
-    <div class="col-md-6 col-sm-12">
+    <div class="main__image row">
+      <div class="col-md-6 col-sm-12">
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><div class="box"><%= image_tag 'tanbo.jpg' %></div></div>
@@ -43,8 +44,7 @@
         })
         </script>
     </div>
-
-    <div class="col-md-6 col-sm-12">
+    <div class="main__text col-md-6 col-sm-12">
       <div class="versial">
         <h2>このサイトに訪問してくださり、</br>ありがとうございます。</h2>
         <h4>作物を育てるたのしさをみんなで共感したい</h4>
@@ -55,6 +55,6 @@
             わくわくした気持ちになっていただけたら嬉しいです。
       </div>
     </div>
-
+  </div>
  </div>
 </div>

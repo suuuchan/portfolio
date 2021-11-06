@@ -13,7 +13,7 @@ module Api
 
       def request
         client = HTTPClient.new
-        request = client.get(Rails.application.credentials.open_weather[:uri], query) # 戻り値は3時間ごとのデータ5日分
+        request = client.get(Rails.application.credentials.open_weather[:uri], query)
         JSON.parse(request.body)
       end
 

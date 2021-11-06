@@ -26,26 +26,26 @@
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
               <li>
-                <%= link_to "マイページ", user_path(current_user.id) %>
+                <%= link_to "マイページ", user_path(current_user.id), class: "link" %>
               </li>
               <li>
-                <%= link_to "成長日記", diaries_path %>
+                <%= link_to "成長日記", diaries_path, class: "link" %>
               </li>
               <li>
-                <%= link_to "投稿する", new_post_path %>
+                <%= link_to "投稿する", new_post_path, class: "link" %>
               </li>
               <li>
-                <%= link_to "メンバーの投稿", posts_path %>
+                <%= link_to "メンバーの投稿", posts_path, class: "link" %>
               </li>
               <li>
-                <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
+                <%= link_to "ログアウト",destroy_user_session_path, method: :delete, class: "link" %>
               </li>
               <% else %>
               <li>
-                <%= link_to "メンバー登録",new_user_registration_path %>
+                <%= link_to "メンバー登録",new_user_registration_path, class: "link" %>
               </li>
               <li>
-                <%= link_to "ログイン",new_user_session_path %>
+                <%= link_to "ログイン",new_user_session_path, class: "link" %>
               </li>
               <% end %>
             </ul>

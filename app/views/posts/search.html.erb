@@ -1,0 +1,43 @@
+<div class="main">
+  <div class="container">
+    <div class="main__search row">
+      <h2 class="main__search__title">作物検索</h2>
+      <div class="col-md-6 ml-3">
+        <%= form_with url:search_posts_path, method: :get, local: true do |f| %>
+          <%= f.text_field :crop %>
+          <%= f.submit :search %>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="main__posts row">
+      <% @posts.each do |post| %>
+      <div class="col-md-6 col-sm-12 text-center">
+        <ul class="main__post__content pl-0 pb-5">
+          <li>
+            <%= post.created_at.strftime("%Y年%m月%d日") %>
+          </li>
+          <li>
+            <%= link_to post_path(post.id) do %>
+              <%= attachment_image_tag post, :image, size:'300x230', format:"jpeg", class: "rounded-pill" %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to post_path(post.id), class: "link" do %>
+              <h4><%= post.title %></h4>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to user_path(post.user_id), class: "link" do %>
+              <%= post.user.nickname %>
+            <% end %>さんの投稿
+          </li>
+          <li>
+              <%= post.user.crop %>を育てています
+          </li>
+        </ul>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

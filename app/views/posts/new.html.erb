@@ -1,41 +1,43 @@
 <% if @post.errors.any? %>
 <div id="error_explanation">
-  <h2><%= pluralize(@post.errors.count, "このエラーで編集完了できません") %></h2>
-  <ul>
+  <h2 class="error_explanation__title"><%= pluralize(@post.errors.count, "このエラーで編集完了できません") %></h2>
+  <ul class="error_explanation__message">
     <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+      <li class="error_explanation__message__text"><%= message %></li>
     <% end %>
   </ul>
 </div>
 <% end %>
 
-<div class="container">
- <div class="row">
-   <div class="col-sm-12 col-md-10 px-5 px-sm-0 mx-auto">
-     <%= form_with model:@post, url:posts_path, local:true do |f| %>
-     <h2>新規投稿</h2>
-     <div class="form">
-       <table class="table table-borderless">
-         <tr>
-           <th style="width: 50%"></th>
-           <td style="width: 50%"></td>
-         </tr>
-         <tr>
-           <th>投稿写真</th>
-           <td><%= f.attachment_field :image, placeholder:"添付写真" %></td>
-         </tr>
-         <tr>
-           <th>タイトル</th>
-           <td><%= f.text_field :title, placeholder:"タイトル" %></td>
-         </tr>
-         <tr>
-           <th>投稿内容</th>
-           <td><%= f.text_area :text, placeholder:"投稿内容" %></td>
-         </tr>
-       </table>
-       <%= f.submit "投稿", class: "btn btn-outline-warning" %>
-     </div>
-     <% end %>
-   </div>
- </div>
+<div class="main">
+  <div class="container">
+    <div class="main__form row">
+      <div class="col-sm-12 col-md-10 px-5 px-sm-0 mx-auto">
+        <%= form_with model:@post, url:posts_path, local:true do |f| %>
+        <h2 class="main__form__title">新規投稿</h2>
+        <div class="main__form__input">
+          <table class="table table-borderless">
+            <tr>
+              <th style="width: 50%"></th>
+              <td style="width: 50%"></td>
+            </tr>
+            <tr>
+              <th>投稿写真</th>
+              <td><%= f.attachment_field :image, placeholder:"添付写真" %></td>
+            </tr>
+            <tr>
+              <th>タイトル</th>
+              <td><%= f.text_field :title, placeholder:"タイトル" %></td>
+            </tr>
+            <tr>
+              <th>投稿内容</th>
+              <td><%= f.text_area :text, placeholder:"投稿内容" %></td>
+            </tr>
+          </table>
+          <%= f.submit "投稿", class: "btn btn-outline-warning" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

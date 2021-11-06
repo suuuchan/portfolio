@@ -22,12 +22,9 @@ ul {
 .versial-content{
   writing-mode: vertical-rl;
   text-orientation: upright;
-  /*word-break: keep-all;*/
   height: 300px;
   text-align: justify;
   text-justify: inter-ideograph;
-  /*column-count: 20;
-  height:100px;*/
 }
 
 .space-pre-line {
@@ -56,6 +53,8 @@ ul {
   left: 50%;
   margin-left: -15px;
   border: 15px solid transparent;
-  // border-top: 15px solid #e0edff;
 }
 
+.links{
+  color: #331c10;
+}

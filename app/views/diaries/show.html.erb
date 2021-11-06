@@ -1,18 +1,21 @@
-<div class = "container px-sm-0">
-    <h2><%= @diary.created_at.strftime("%Y年%m月%d日") %>の日記</h2>
-    <div class = "row">
+<div class="main">
+  <div class="container px-sm-0">
+      <h2 class="main__title"><%= @diary.created_at.strftime("%Y年%m月%d日") %>の日記</h2>
+      <div class="main__link__back row">
         <%= link_to "成長日記一覧へ",diaries_path, class: "btn btn-outline-warning btn-sm" %>
-    </div>
-    <div class = "row">
-        <div class = "col-md-5 mt-3">
+      </div>
+      
+      <div class="main__content row">
+        <div class="main__content__link col-md-5 mt-3">
             <%= attachment_image_tag @diary, :image, :fill, 300, 200, format:"jpeg" %></br>
             <%= link_to "削除する",diary_path(@diary.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-outline-danger btn-sm" %>
         </div>
-        <div class = "col-md-7">
+        <div class="main__content__text col-md-7">
             <div class="versial-content">
                 <h4><%= @diary.title %></h4>
                 <p><%= @diary.text %></p>
             </div>
         </div>
-    </div>
+      </div>
  </div>
+</div>
